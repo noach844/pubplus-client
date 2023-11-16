@@ -1,8 +1,14 @@
 import { Button, Flex, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { loginAPI } from '../../../api/authAPI';
+import { useAuth } from '../../../hooks/useAtuh';
+import { useToggle } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
 
 export const SignIn = () => {
+  const { login } = useAuth();
+  const [isLoading, toggleIsLoading] = useToggle();
+
   const form = useForm({
     initialValues: {
       username: '',
@@ -14,8 +20,23 @@ export const SignIn = () => {
     <>
       <h1>Sign In</h1>
       <form
-        onSubmit={form.onSubmit(async (values) => {
-          loginAPI(values);
+        onSubmit={form.onSubmit(async ({ username, password }) => {
+          toggleIsLoading();
+          try {
+            await login(username, password);
+            notifications.show({
+              title: 'Welcome Back!',
+              message: 'navigating to home page!',
+            });
+          } catch (err) {
+            notifications.show({
+              title: 'Error log in!',
+              message: 'Please check your credentials or try again later',
+              color: 'red',
+            });
+          } finally {
+            toggleIsLoading();
+          }
         })}
         style={{ width: '50%' }}
       >
@@ -34,6 +55,7 @@ export const SignIn = () => {
             onChange={(event) =>
               form.setFieldValue('username', event.currentTarget.value)
             }
+            disabled={isLoading}
           />
           <PasswordInput
             w='100%'
@@ -44,6 +66,7 @@ export const SignIn = () => {
             onChange={(event) =>
               form.setFieldValue('password', event.currentTarget.value)
             }
+            disabled={isLoading}
           />
           <a>
             Not a member yet?{' '}
@@ -59,6 +82,7 @@ export const SignIn = () => {
             w='25%'
             gradient={{ from: 'blue', to: 'cyan' }}
             variant='gradient'
+            loading={isLoading}
           >
             Sign In
           </Button>
