@@ -11,7 +11,7 @@
 }
 
 .studentImage{
-  box-shadow: 0 00px 400px 100px #4aaee4;
+  box-shadow: 0 100px 300px 50px #4aaee4;
   height: 900px;
   border-radius: 100%;
   background-color: hwb(197 27% 13% / 0.123);

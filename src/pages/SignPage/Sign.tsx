@@ -1,9 +1,9 @@
 import { Text, Flex, Space } from '@mantine/core';
 import classes from './Sign.module.css';
-import { SignIn } from './features/SignIn';
+import { SignIn } from './features/Signin';
 import { useToggle } from '@mantine/hooks';
 import { SignUp } from './features/Signup';
-//import StudentPic from '../../assets/student.png';
+import EmployeePic from '../../assets/student.png';
 
 export const Sign = () => {
   const [isNewMember, toggleIsNewMember] = useToggle();
@@ -37,7 +37,7 @@ export const Sign = () => {
           <SignIn toggleIsNewMember={toggleIsNewMember} />
         )}
       </Flex>
-      {/* <img src={StudentPic} className={classes.studentImage} /> */}
+      <img src={EmployeePic} className={classes.studentImage} />
     </Flex>
   );
 };
