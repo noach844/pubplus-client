@@ -1,0 +1,18 @@
+
+.title {
+  font-family: Greycliff CF, var(--mantine-font-family);
+  font-size: rem(62px);
+  font-weight: 900;
+  line-height: 1.1;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.studentImage{
+  box-shadow: 0 00px 400px 100px #4aaee4;
+  height: 900px;
+  border-radius: 100%;
+  background-color: hwb(197 27% 13% / 0.123);
+}
