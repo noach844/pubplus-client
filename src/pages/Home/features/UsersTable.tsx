@@ -1,5 +1,6 @@
 import {
   ComboboxItem,
+  Flex,
   Loader,
   MultiSelect,
   Table,
@@ -10,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { getAllUsersStatuses } from '../../../api/userApi'; // Adjust the import based on your actual API file
 import {} from '../../../api/userApi';
+import { getAllStatuses } from '../../../api/statusAPI';
 interface User {
   fullname: string;
   status_id: number;
@@ -31,35 +33,42 @@ export const UsersTable: React.FC = () => {
     Error
   >({
     queryKey: ['status-list'],
+    queryFn: getAllStatuses,
   });
 
   return (
-    <>
-      <Title order={2}>Other Users</Title>
+    <Flex direction={'column'} w='50%' align={'center'}>
+      <Title order={2} mb='lg'>
+        Other Users
+      </Title>
       {isLoading || isStatusLoading ? (
         <Loader />
       ) : (
         <>
-          <TextInput
-            label='Search:'
-            value={nameFilter}
-            size='xs'
-            onChange={(e) => setNameFilter(e.currentTarget.value)}
-            disabled={isLoading}
-          />
-          <MultiSelect
-            size='xs'
-            w='10%'
-            disabled={isStatusLoading}
-            label='Status:'
-            data={statusList || []}
-            onChange={setStatusFilter}
-            value={statusFilter}
-          />
-          <Table w='20%' striped highlightOnHover>
+          <Flex w='100%' justify={'space-between'}>
+            <TextInput
+              label='Search:'
+              value={nameFilter}
+              size='xs'
+              w='45%'
+              onChange={(e) => setNameFilter(e.currentTarget.value)}
+              disabled={isLoading}
+            />
+            <MultiSelect
+              size='xs'
+              w='45%'
+              disabled={isStatusLoading}
+              label='Status:'
+              data={statusList || []}
+              onChange={setStatusFilter}
+              value={statusFilter}
+            />
+          </Flex>
+
+          <Table mt='lg' w='100%' striped highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>Name</Table.Th>
+                <Table.Th align='center'>Name</Table.Th>
                 <Table.Th>Status</Table.Th>
               </Table.Tr>
             </Table.Thead>
@@ -82,6 +91,6 @@ export const UsersTable: React.FC = () => {
           </Table>
         </>
       )}
-    </>
+    </Flex>
   );
 };

@@ -1,6 +1,10 @@
 import { loginAPI, registerAPI, RegisterPayload } from '../api/authAPI';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
+  const navigate = useNavigate();
+
   const login = async (username: string, password: string) => {
     await loginAPI({ username: username, password: password });
   };
@@ -9,5 +13,11 @@ export const useAuth = () => {
     await registerAPI(userDetails);
   };
 
-  return { login, register };
+  const logout = () => {
+    Cookies.remove('refresh_token_cookie');
+    Cookies.remove('access_token_cookie');
+    navigate('/login');
+  };
+
+  return { login, register, logout };
 };
