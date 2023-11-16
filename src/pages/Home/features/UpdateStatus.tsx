@@ -10,7 +10,7 @@ export const UpdateStatus = () => {
     queryClient.invalidateQueries({ queryKey: ['user-details'] });
   };
 
-  const { isLoading, isError, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ['status-list'],
     queryFn: getAllStatuses,
   });

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserDetails } from '../../api/userApi';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Divider, Flex, Paper, Title } from '@mantine/core';
+import { Divider, Flex, Loader, Paper, Title } from '@mantine/core';
 import { UpdateStatus } from './features/UpdateStatus';
 import { UsersTable } from './features/UsersTable';
 
@@ -14,7 +14,10 @@ export const Home = () => {
   });
 
   useEffect(() => {
-    isError && navigate('/login');
+    if (isError) {
+      navigate('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError]);
 
   return (
@@ -29,12 +32,18 @@ export const Home = () => {
         >
           <Flex align={'center'} p='lg' direction={'column'} h='100%'>
             <Title>MyWorkStatus</Title>
-            <Title order={3}>
-              Hello {data?.fullname}, you are {data?.status_name},
-            </Title>
-            <UpdateStatus />
-            <Divider w='50%' />
-            <UsersTable />
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <Title order={3}>
+                  Hello {data?.fullname}, you are {data?.status_name},
+                </Title>
+                <UpdateStatus />
+                <Divider w='50%' />
+                <UsersTable />
+              </>
+            )}
           </Flex>
         </Paper>
       </Flex>

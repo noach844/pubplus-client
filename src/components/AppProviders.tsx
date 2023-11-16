@@ -1,6 +1,5 @@
 import { MantineProvider } from '@mantine/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'react-redux';
 interface IProps {
   children: JSX.Element;
 }
