@@ -4,10 +4,12 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { useAuth } from '../../../hooks/useAtuh';
 import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 
 export const SignIn = ({ toggleIsNewMember }) => {
   const { login } = useAuth();
   const [isLoading, toggleIsLoading] = useToggle();
+  const navigate = useNavigate();
 
   const form = useForm({
     initialValues: {
@@ -28,6 +30,7 @@ export const SignIn = ({ toggleIsNewMember }) => {
               title: 'Welcome Back!',
               message: 'navigating to home page!',
             });
+            navigate('/');
           } catch (err) {
             notifications.show({
               title: 'Error log in!',

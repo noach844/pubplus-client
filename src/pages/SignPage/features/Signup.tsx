@@ -4,6 +4,7 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { useAuth } from '../../../hooks/useAtuh';
 import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUp = ({ toggleIsNewMember }) => {
   const { register } = useAuth();
@@ -28,6 +29,7 @@ export const SignUp = ({ toggleIsNewMember }) => {
               title: 'Welcome to Our System',
               message: 'Navigating to sign in',
             });
+            toggleIsNewMember();
           } catch (err) {
             notifications.show({
               title: 'Error in sign up',
