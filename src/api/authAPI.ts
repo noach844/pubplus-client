@@ -21,7 +21,3 @@ export const loginAPI = async (payload: LoginPayload) => {
 export const registerAPI = async (payload: RegisterPayload) => {
   await authClient.post<string>('/register', payload);
 };
-
-export const getUserDetails = async () => {
-  return (await authClient.get('/user-details')).data;
-};
