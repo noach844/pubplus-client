@@ -4,9 +4,14 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { useAuth } from '../../../hooks/useAtuh';
 import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
-import { useNavigate } from 'react-router-dom';
 
-export const SignUp = ({ toggleIsNewMember }) => {
+export const SignUp = ({
+  toggleIsNewMember,
+}: {
+  toggleIsNewMember: (
+    value?: React.SetStateAction<boolean> | undefined
+  ) => void;
+}) => {
   const { register } = useAuth();
   const [isLoading, toggleIsLoading] = useToggle();
   const form = useForm({
@@ -85,7 +90,7 @@ export const SignUp = ({ toggleIsNewMember }) => {
             Already a member ?{' '}
             <a
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={toggleIsNewMember}
+              onClick={() => toggleIsNewMember}
             >
               click here
             </a>

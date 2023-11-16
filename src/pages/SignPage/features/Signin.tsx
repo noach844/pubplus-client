@@ -6,7 +6,13 @@ import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 
-export const SignIn = ({ toggleIsNewMember }) => {
+export const SignIn = ({
+  toggleIsNewMember,
+}: {
+  toggleIsNewMember: (
+    value?: React.SetStateAction<boolean> | undefined
+  ) => void;
+}) => {
   const { login } = useAuth();
   const [isLoading, toggleIsLoading] = useToggle();
   const navigate = useNavigate();
@@ -75,7 +81,7 @@ export const SignIn = ({ toggleIsNewMember }) => {
             Not a member yet?{' '}
             <a
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={toggleIsNewMember}
+              onClick={() => toggleIsNewMember}
             >
               click here
             </a>
