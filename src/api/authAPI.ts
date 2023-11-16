@@ -8,6 +8,6 @@ type LoginPayload = {
 const authURL = `${import.meta.env.VITE_SERVER_API}/auth`;
 const authClient = createHTTPClient(authURL);
 
-const loginAPI = async (payload: LoginPayload) => {
+export const loginAPI = async (payload: LoginPayload) => {
   await authClient.post<string>('/', payload);
 };

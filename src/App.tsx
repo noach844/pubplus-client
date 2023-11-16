@@ -1,7 +1,12 @@
 import './App.css';
+import { Sign } from './pages/SignPage/Sign';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Sign />
+    </>
+  );
 }
 
 export default App;
