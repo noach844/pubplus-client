@@ -29,7 +29,7 @@ export const SignUp = ({
         onSubmit={form.onSubmit(async (values) => {
           try {
             toggleIsLoading();
-            register(values);
+            await register(values);
             notifications.show({
               title: 'Welcome to Our System',
               message: 'Navigating to sign in',

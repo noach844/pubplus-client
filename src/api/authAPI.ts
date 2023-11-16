@@ -15,9 +15,16 @@ const authURL = `${import.meta.env.VITE_SERVER_API}/auth`;
 const authClient = createHTTPClient(authURL);
 
 export const loginAPI = async (payload: LoginPayload) => {
-  await authClient.post<string>('/login', payload);
+  const res = await authClient.post<string>('/login', payload);
+  if (!res) {
+    throw new Error('User not found!');
+  }
 };
 
 export const registerAPI = async (payload: RegisterPayload) => {
-  await authClient.post<string>('/register', payload);
+  const res = await authClient.post<string>('/register', payload);
+  console.log(res);
+  if (!res) {
+    throw new Error('Error creating user!');
+  }
 };
