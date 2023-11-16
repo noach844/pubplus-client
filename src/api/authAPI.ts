@@ -23,7 +23,6 @@ export const loginAPI = async (payload: LoginPayload) => {
 
 export const registerAPI = async (payload: RegisterPayload) => {
   const res = await authClient.post<string>('/register', payload);
-  console.log(res);
   if (!res) {
     throw new Error('Error creating user!');
   }
