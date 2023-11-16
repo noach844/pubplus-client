@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const REFRESH_TOKEN_API =
-  process.env.REFRESH_TOKEN_API || 'http://localhost:5000/auth/refresh';
+  import.meta.env.VITE_REFRESH_TOKEN_API ||
+  'http://localhost:5000/auth/refresh';
 
 const refreshToken = async () => {
   await axios.get(REFRESH_TOKEN_API, {
