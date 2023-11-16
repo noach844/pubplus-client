@@ -6,7 +6,7 @@ import { ActionIcon, Center, Flex, Loader, Paper, Title } from '@mantine/core';
 import { UpdateStatus } from './features/UpdateStatus';
 import { UsersTable } from './features/UsersTable';
 import { IconLogout2 } from '@tabler/icons-react';
-import { useAuth } from '../../hooks/useAtuh';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Home = () => {
   const { logout } = useAuth();

@@ -1,7 +1,7 @@
 import { Button, Flex, PasswordInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconArrowRight } from '@tabler/icons-react';
-import { useAuth } from '../../../hooks/useAtuh';
+import { useAuth } from '../../../hooks/useAuth.ts';
 import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 
@@ -86,15 +86,16 @@ export const SignUp = ({
             }
             disabled={isLoading}
           />
-          <a>
-            Already a member ?{' '}
+          <span>
+            Not a member yet?{' '}
             <a
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={() => toggleIsNewMember}
+              onClick={() => toggleIsNewMember()}
             >
               click here
             </a>
-          </a>
+          </span>
+
           <Button
             style={{ alignSelf: 'flex-end' }}
             type='submit'

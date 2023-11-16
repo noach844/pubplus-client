@@ -1,8 +1,8 @@
 import { Text, Flex, Space } from '@mantine/core';
 import classes from './Sign.module.css';
-import { SignIn } from './features/Signin';
+import { SignIn } from './features/Signin.tsx';
 import { useToggle } from '@mantine/hooks';
-import { SignUp } from './features/Signup';
+import { SignUp } from './features/Signup.tsx';
 import EmployeePic from '../../assets/student.png';
 
 export const Sign = () => {

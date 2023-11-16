@@ -1,4 +1,4 @@
-import { loginAPI, registerAPI, RegisterPayload } from '../api/authAPI';
+import { loginAPI, registerAPI, RegisterPayload } from '../api/authAPI.ts';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
