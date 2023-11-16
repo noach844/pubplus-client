@@ -5,33 +5,33 @@ import { useAuth } from '../../../hooks/useAtuh';
 import { useToggle } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 
-export const SignIn = ({ toggleIsNewMember }) => {
-  const { login } = useAuth();
+export const SignUp = ({ toggleIsNewMember }) => {
+  const { register } = useAuth();
   const [isLoading, toggleIsLoading] = useToggle();
-
   const form = useForm({
     initialValues: {
       username: '',
+      fullname: '',
       password: '',
     },
   });
 
   return (
     <>
-      <h1>Sign In</h1>
+      <h1>Sign Up</h1>
       <form
-        onSubmit={form.onSubmit(async ({ username, password }) => {
-          toggleIsLoading();
+        onSubmit={form.onSubmit(async (values) => {
           try {
-            await login(username, password);
+            toggleIsLoading();
+            register(values);
             notifications.show({
-              title: 'Welcome Back!',
-              message: 'navigating to home page!',
+              title: 'Welcome to Our System',
+              message: 'Navigating to sign in',
             });
           } catch (err) {
             notifications.show({
-              title: 'Error log in!',
-              message: 'Please check your credentials or try again later',
+              title: 'Error in sign up',
+              message: 'Please try again later',
               color: 'red',
             });
           } finally {
@@ -43,7 +43,7 @@ export const SignIn = ({ toggleIsNewMember }) => {
         <Flex
           direction={'column'}
           justify={'space-between'}
-          h='15rem'
+          h='24rem'
           align={'end'}
         >
           <TextInput
@@ -54,6 +54,17 @@ export const SignIn = ({ toggleIsNewMember }) => {
             value={form.values.username}
             onChange={(event) =>
               form.setFieldValue('username', event.currentTarget.value)
+            }
+            disabled={isLoading}
+          />
+          <TextInput
+            w={'100%'}
+            required
+            label='Full Name:'
+            placeholder='Your Full Name here...'
+            value={form.values.fullname}
+            onChange={(event) =>
+              form.setFieldValue('fullname', event.currentTarget.value)
             }
             disabled={isLoading}
           />
@@ -69,7 +80,7 @@ export const SignIn = ({ toggleIsNewMember }) => {
             disabled={isLoading}
           />
           <a>
-            Not a member yet?{' '}
+            Already a member ?{' '}
             <a
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
               onClick={toggleIsNewMember}
@@ -78,14 +89,15 @@ export const SignIn = ({ toggleIsNewMember }) => {
             </a>
           </a>
           <Button
+            style={{ alignSelf: 'flex-end' }}
             type='submit'
-            w='25%'
+            w='30%'
+            rightSection={<IconArrowRight size={14} />}
             gradient={{ from: 'blue', to: 'cyan' }}
             variant='gradient'
-            rightSection={<IconArrowRight size={14} />}
             loading={isLoading}
           >
-            Sign In
+            Sign Up
           </Button>
         </Flex>
       </form>

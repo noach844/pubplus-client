@@ -1,9 +1,12 @@
 import { Text, Flex, Space } from '@mantine/core';
 import classes from './Sign.module.css';
 import { SignIn } from './features/SignIn';
+import { useToggle } from '@mantine/hooks';
+import { SignUp } from './features/Signup';
 //import StudentPic from '../../assets/student.png';
 
 export const Sign = () => {
+  const [isNewMember, toggleIsNewMember] = useToggle();
   return (
     <Flex
       justify={'start'}
@@ -28,7 +31,11 @@ export const Sign = () => {
           Team-Availability System!
         </h1>
         <Space h='3rem' />
-        <SignIn />
+        {isNewMember ? (
+          <SignUp toggleIsNewMember={toggleIsNewMember} />
+        ) : (
+          <SignIn toggleIsNewMember={toggleIsNewMember} />
+        )}
       </Flex>
       {/* <img src={StudentPic} className={classes.studentImage} /> */}
     </Flex>
